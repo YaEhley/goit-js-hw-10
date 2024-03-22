@@ -5,16 +5,18 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 let userSelectedDate;
 let timerInterval;
-const startButton = document.getElementById('start-btn');
-const daysDisplay = document.getElementById('days');
-const hoursDisplay = document.getElementById('hours');
-const minutesDisplay = document.getElementById('minutes');
-const secondsDisplay = document.getElementById('seconds');
+const startButton = document.querySelector('[data-start]');
+const daysDisplay = document.querySelector('[data-days]');
+const hoursDisplay = document.querySelector('[data-hours]');
+const minutesDisplay = document.querySelector('[data-minutes]');
+const secondsDisplay = document.querySelector('[data-seconds]');
+startButton.disabled = true;
+
 
     document.addEventListener('DOMContentLoaded', function () {
-      const datePicker = flatpickr("#datetime-picker", {
+      flatpickr("#datetime-picker", {
         enableTime: true,
-        onClose: function (selectedDates, dateStr, instance) {
+        onClose: function (selectedDates) {
           userSelectedDate = selectedDates[0];
           const now = new Date();
           if (userSelectedDate <= now) {
@@ -51,8 +53,8 @@ const secondsDisplay = document.getElementById('seconds');
         secondsDisplay.innerText = addLeadingZero(seconds);
       }
 
-      function addLeadingZero(number) {
-        return number < 10 ? '0' + number : number;
+      function addLeadingZero(value) {
+        return value.toString().padStart(2, '0');
       }
 
 

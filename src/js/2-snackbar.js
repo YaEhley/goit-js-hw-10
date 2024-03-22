@@ -54,6 +54,4 @@ function onCreateNotification(event) {
     });
 
   formSubmit.reset();
-
-  delayInput.value = '';
 }
