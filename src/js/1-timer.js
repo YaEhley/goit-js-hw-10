@@ -10,10 +10,11 @@ const daysDisplay = document.querySelector('[data-days]');
 const hoursDisplay = document.querySelector('[data-hours]');
 const minutesDisplay = document.querySelector('[data-minutes]');
 const secondsDisplay = document.querySelector('[data-seconds]');
-startButton.disabled = true;
 
 
-    document.addEventListener('DOMContentLoaded', function () {
+
+document.addEventListener('DOMContentLoaded', function () {
+      startButton.disabled = true;
       flatpickr("#datetime-picker", {
         enableTime: true,
         onClose: function (selectedDates) {
