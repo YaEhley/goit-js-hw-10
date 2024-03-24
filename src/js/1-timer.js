@@ -14,12 +14,24 @@ const secondsDisplay = document.querySelector('[data-seconds]');
 
 
 document.addEventListener('DOMContentLoaded', function () {
-      startButton.disabled = true;
+  
       flatpickr("#datetime-picker", {
         enableTime: true,
         onClose: function (selectedDates) {
           userSelectedDate = selectedDates[0];
           const now = new Date();
+          if (!userSelectedDate || isNaN(userSelectedDate)) {
+            clearInterval(timerInterval);
+            return;
+          }
+          if (!userSelectedDate || isNaN(userSelectedDate)) {
+            iziToast.error({
+            position: 'topCenter',
+            title: 'Error',
+            message: 'Please choose a future date before starting the timer',
+            });
+            return;
+          }
           if (userSelectedDate <= now) {
             iziToast.error({
               position: 'topCenter',
